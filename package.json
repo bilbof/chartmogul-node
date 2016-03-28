@@ -1,0 +1,16 @@
+{
+  "name": "chartmogul-node",
+  "version": "1.0.0",
+  "description": "A NodeJS helper library for the ChartMogul APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "ChartMogul"  
+  ],
+  "author": "Bill Franklin <bill@chartmogul.com>",
+  "license": "MIT",
+  "homepage": "https://dev.chartmogul.com"
+}
