@@ -31,7 +31,7 @@ var data_source = chartmogul.createDataSource("Data source name");
 List data sources.
 
 ```js
-chartmogul.listDataSources(process);
+chartmogul.listDataSources(callback);
 ```
 
 ### Customers
@@ -51,7 +51,7 @@ chartmogul.importCustomer(data_source, customer_object, callback);
 List customers.
 
 ```js
-chartmogul.listCustomers(process);
+chartmogul.listCustomers(callback);
 ```
 
 ### Plans
