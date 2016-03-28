@@ -118,7 +118,7 @@ var invoice = {
 Import invoices.
 
 ```js
-chartmogul.importInvoices("customer's chartmogul id", invoices, callback);
+chartmogul.importInvoices("chartmogul customer id", invoices, callback);
 ```
 
 List subscriptions.
