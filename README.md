@@ -25,7 +25,7 @@ For more information, visit https://dev.chartmogul.com/docs/introduction-import-
 Creating a data source.
 
 ```js
-var data_source = chartmogul.createDataSource("Data source name");
+var data_source = chartmogul.createDataSource("Data source name", callback);
 ```
 
 List data sources.
@@ -121,6 +121,12 @@ Import invoices.
 chartmogul.importInvoices("chartmogul customer id", invoices, callback);
 ```
 
+List invoices.
+
+```js
+chartmogul.listCustomerInvoices("chartmogul customer id", callback);
+```
+
 List subscriptions.
 
 ```js
@@ -178,7 +184,7 @@ var attributes = {
 	"custom": [{"type": "String", "key": "marketing_channel", "value": "Facebook"},
                  {"type": "Integer", "key": "age", "value": 8},
                  {"type": "Timestamp", "key": "Sign up date", "value": "2016-01-25"},
-                 {"type": "Boolean", "key": "Contacted suppport", "value": true}]
+                 {"type": "Boolean", "key": "Contacted support", "value": true}]
 }
 
 chartmogul.addCustomerAttributes("chartmogul customer id", attributes, callback);

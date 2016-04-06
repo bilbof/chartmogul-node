@@ -99,16 +99,13 @@ function request(path, callback, method, payload) {
 // Creates a Data Source: https://chartmogul.readme.io/docs/create-data-source
 // Returns billing system ID.
 
-chartmogul.prototype.createDataSource = function (sourceName){
+chartmogul.prototype.createDataSource = function (sourceName, callback){
 	
-	var source = { name: sourceName };
-
 	function saveDataSourceId(payload){
-		DATA_SOURCE = payload.uuid;
-		return payload.uuid;
+		callback(payload.uuid);
 	}
 
-	post("/v1/import/data_sources", source, saveDataSourceId);
+	post("/v1/import/data_sources", { name: sourceName }, saveDataSourceId);
 
 }
 
@@ -227,6 +224,27 @@ chartmogul.prototype.listPlans = function (callback){
 
 chartmogul.prototype.importInvoices = function (customerId, invoices, callback){
 	post("/v1/import/customers/"+customerId+"/invoices", invoices, callback);
+}
+
+// https://dev.chartmogul.com/docs/list-customers-invoices
+
+chartmogul.prototype.listCustomerInvoices = function (customerId, callback){
+	
+	var invoices = i;
+	get("/v1/import/"+customerId+"/invoices", checkForMore);
+
+	function checkForMore(payload){
+	
+		invoices.push(payload.entries);
+
+		if (payload.has_more) {
+			get("/v1/import/"+customerId+"/invoices", checkForMore);
+		}
+		else {
+			callback(invoices);
+		}
+	}
+
 }
 
 // https://chartmogul.readme.io/docs/list-a-customers-subscriptions
@@ -363,6 +381,7 @@ chartmogul.prototype.findCustomer = function (email, callback){
 		}
 	}
 }
+
 
 // https://chartmogul.readme.io/docs/list-customer-subscriptions
 
