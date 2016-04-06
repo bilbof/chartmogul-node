@@ -230,15 +230,15 @@ chartmogul.prototype.importInvoices = function (customerId, invoices, callback){
 
 chartmogul.prototype.listCustomerInvoices = function (customerId, callback){
 	
-	var invoices = i;
-	get("/v1/import/"+customerId+"/invoices", checkForMore);
+	var invoices = [];
+	get("/v1/import/customers/"+customerId+"/invoices", checkForMore);
 
 	function checkForMore(payload){
-	
-		invoices.push(payload.entries);
 
-		if (payload.has_more) {
-			get("/v1/import/"+customerId+"/invoices", checkForMore);
+		invoices.push(payload.invoices);
+		
+		if (payload.current_page < payload.total_pages) {
+			get("/v1/import/customers/"+customerId+"/invoices", checkForMore);
 		}
 		else {
 			callback(invoices);
@@ -246,6 +246,7 @@ chartmogul.prototype.listCustomerInvoices = function (customerId, callback){
 	}
 
 }
+
 
 // https://chartmogul.readme.io/docs/list-a-customers-subscriptions
 
